@@ -1,0 +1,36 @@
+City of Plymouth, MN — Background Brief
+1. What the organization does
+The City of Plymouth is a municipal government serving about 79,000 residents in suburban Hennepin County, roughly 12 miles west of Minneapolis. The city’s mission is “We All Work Together to Add Quality to Life.” Its guiding values are customer focus, integrity, being visionary, inclusion, and connections. City of Plymouth
+Its major services include police and fire protection, streets and infrastructure, water and sewer, parks and recreation, planning and zoning, housing and economic development, building permits/inspections, transit, recycling, elections, finance, communications, IT, and other administrative services. City of Plymouth
+The organization serves residents, businesses, property owners, developers, visitors, and others who live or work in Plymouth.
+2. Who runs it
+Plymouth uses a council-manager form of government. The seven-member City Council—one mayor and six council members—sets policy and the overall direction of the city. The City Manager, Dave Callister, is appointed by the Council and is the chief administrative officer responsible for the day-to-day operation of the organization and its departments. City of Plymouth
+As of September 2026, Jeff Wosje is mayor, and Maria Solano is deputy city manager. City of Plymouth
+The city reports more than 320 full-time employees, plus roughly 300 temporary/seasonal employees, 300 election judges and 30 part-time/on-call firefighters. City of Plymouth
+For scale, the city's 2026 General Fund expenditures are about $58.6 million. That is only the General Fund, so it does not represent all city capital, utility and other fund spending. City of Plymouth
+Decision-making is divided between the Council and professional staff: the Council establishes policy, priorities and budgets, while the city manager and department heads administer them. Plymouth's current strategic priorities include operational excellence, City Center reimagined, a connected and thriving community, environmental stewardship, and economic stability/vitality. City of Plymouth
+For an operational interview, Dave Callister would be the most natural citywide contact unless your group already has a specific person in mind.
+________________________________________
+3. What the work looks like day to day
+Because this is a city government, the work varies enormously by department. At the senior-management level, three recurring activities appear especially important:
+•	Coordinating departments and resolving issues: The city manager oversees departments ranging from Public Works and Public Safety to Parks, Finance and Community & Economic Development. City of Plymouth
+•	Preparing decisions and information for the City Council: Staff continually prepare agenda materials, Council Information Memoranda, reports, ordinances, resolutions and follow-up work for Council meetings. City of Plymouth
+•	Responding to ongoing city operations and resident needs: This includes permits, inspections, development applications, street and utility issues, recreation programs, police/fire calls, resident questions and longer-term projects.
+So, in simple terms, a lot of staff time goes into processing information, communicating, coordinating between people/departments, and documenting decisions.
+________________________________________
+4. Where AI already shows up
+This is where I would be careful about claiming too much.
+I did not find public evidence that Plymouth has officially deployed ChatGPT, Copilot or another generative-AI platform citywide for employees, nor did I find a publicly posted citywide generative-AI policy.
+There is evidence that the city is already engaging with AI publicly. Plymouth Parks & Recreation has offered “Practical ChatGPT” classes teaching residents how ChatGPT can be used at work and at home. City of Plymouth
+Interestingly, the city has also established at least one boundary around AI: its Picture Plymouth Photo Contest specifically does not accept AI-generated images. City of Plymouth
+So for your brief I'd write:
+AI use by city staff: Unknown / needs to be established through interview. The city has publicly offered ChatGPT education to residents, but no citywide internal generative-AI deployment was identified in publicly available materials.
+That uncertainty is actually useful for the project because it gives you something specific to ask about.
+________________________________________
+5. One or two frictions worth a closer look
+I would frame these as hypotheses to investigate, rather than claiming Plymouth definitely has these problems.
+Friction #1 — Information and administrative workload.
+City staff produce and work through a large volume of Council reports, agenda packets, memos, budgets, public communications, policies, meeting materials and department information. City of Plymouth A useful question is how much employee time goes into finding information, summarizing it, drafting documents, reviewing documents, and moving information between departments.
+Friction #2 — Resident requests crossing organizational boundaries.
+Plymouth provides dozens of different services across multiple departments—permitting, planning, streets, utilities, parks, police, fire, housing, recycling, transit and others. City of Plymouth A useful question is how much time staff spend determining where a resident/business question belongs, obtaining information from another department, responding, and following up.
+
