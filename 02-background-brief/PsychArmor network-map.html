@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PsychArmor Network Map — Kennedy Coders, MLD-371</title>
+<style>
+  /* Harvard palette. Crimson is used for fields and rules, not body text. */
+  :root {
+    --crimson:#A51C30; --ink:#1E1E1E; --mortar:#8C8179;
+    --parchment:#F3F3F1; --slate:#8996A0; --shade:#BAC5C6; --paper:#FFFFFF;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--parchment); color:var(--ink);
+    font-family:Georgia,"Adobe Garamond Pro",Garamond,"Times New Roman",serif;
+    font-size:16px; line-height:1.6;
+  }
+  .sheet{max-width:1180px; margin:0 auto; background:var(--paper);
+    border-left:1px solid var(--shade); border-right:1px solid var(--shade); min-height:100vh}
+  .crimson-bar{background:var(--crimson); height:.6rem}
+  .school{font-family:"Franklin Gothic Book","Franklin Gothic","Helvetica Neue",Arial,sans-serif;
+    font-size:.78rem; letter-spacing:.06em; color:var(--mortar); padding:1.3rem 2.75rem 0}
+  header{padding:.8rem 2.75rem 1.5rem; border-bottom:2px solid var(--ink)}
+  h1{font-size:1.95rem; line-height:1.18; font-weight:400; letter-spacing:-.01em; margin:0 0 .9rem}
+  dl.meta{font-family:"Franklin Gothic Book","Franklin Gothic","Helvetica Neue",Arial,sans-serif;
+    font-size:.82rem; line-height:1.5; margin:0; display:grid; grid-template-columns:6.5rem 1fr; gap:.26rem 1rem}
+  dl.meta dt{color:var(--mortar)} dl.meta dd{margin:0}
+  .inner{padding:1.6rem 2.75rem 4rem}
+  h2{font-family:"Franklin Gothic Book","Franklin Gothic","Helvetica Neue",Arial,sans-serif;
+    font-size:.95rem; font-weight:700; margin:2.2rem 0 .8rem; padding-bottom:.35rem;
+    border-bottom:1px solid var(--shade)}
+  h2:first-child{margin-top:0}
+  p{margin:0 0 1rem}
+
+  /* Controls */
+  .controls{font-family:"Franklin Gothic Book","Franklin Gothic","Helvetica Neue",Arial,sans-serif;
+    font-size:.76rem; display:flex; flex-wrap:wrap; gap:.4rem; margin:0 0 .9rem}
+  .chip{display:inline-flex; align-items:center; gap:.4rem; padding:.3rem .6rem;
+    border:1px solid var(--shade); background:var(--paper); color:var(--ink);
+    cursor:pointer; border-radius:2px; font:inherit}
+  .chip .dot{width:.62rem; height:.62rem; border-radius:50%; flex:none}
+  .chip[aria-pressed="false"]{opacity:.38}
+  .chip:focus-visible{outline:2px solid var(--crimson); outline-offset:2px}
+
+  /* Map */
+  .mapwrap{border:1px solid var(--shade); background:var(--paper); overflow:hidden}
+  svg{display:block; width:100%; height:auto; background:var(--paper)}
+  .edge{fill:none}
+  .node-hit{cursor:pointer}
+  .label{font-family:"Franklin Gothic Book","Franklin Gothic","Helvetica Neue",Arial,sans-serif;
+    pointer-events:none}
+  .label .nm{font-size:12px; fill:var(--ink)}
+  .label .rl{font-size:10.5px; fill:var(--mortar)}
+  .core-label .nm{font-size:15px; font-weight:700}
+  .dim{opacity:.1}
+  .hidden{display:none}
+  g.node:focus{outline:none}
+  g.node:focus-visible circle.ring{stroke:var(--crimson); stroke-width:3}
+  @media (prefers-reduced-motion:no-preference){
+    .edge,.node,.label{transition:opacity .15s ease}
+  }
+
+  /* Readout + notes */
+  .readout{font-family:"Franklin Gothic Book","Franklin Gothic","Helvetica Neue",Arial,sans-serif;
+    font-size:.8rem; line-height:1.5; background:var(--parchment); border-left:3px solid var(--crimson);
+    padding:.75rem 1rem; margin:.9rem 0 0; min-height:4.4rem}
+  .readout .who{font-weight:700; display:block}
+  .readout .ties{color:#45433f}
+
+  .legend{font-family:"Franklin Gothic Book","Franklin Gothic","Helvetica Neue",Arial,sans-serif;
+    font-size:.78rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+    gap:.35rem 1.4rem; margin:1rem 0 0; color:#45433f}
+  .legend .row{display:flex; align-items:center; gap:.55rem}
+  .legend svg{width:34px; height:10px; flex:none}
+
+  ol.findings{padding-left:1.35rem; margin:0}
+  ol.findings li{margin-bottom:.7rem}
+  ol.findings strong{font-weight:700}
+
+  .note{font-family:"Franklin Gothic Book","Franklin Gothic","Helvetica Neue",Arial,sans-serif;
+    font-size:.78rem; line-height:1.55; color:#45433f; background:var(--parchment);
+    border-top:3px solid var(--crimson); padding:1.2rem 1.4rem; margin-top:2.4rem}
+  .note h2{border:none; margin:0 0 .6rem; padding:0; font-size:.88rem}
+  .note p{margin:0 0 .7rem}
+  .note p:last-child{margin:0}
+
+  @media (max-width:760px){
+    .school,header{padding-left:1.3rem; padding-right:1.3rem}
+    .inner{padding:1.3rem 1.3rem 3rem}
+    h1{font-size:1.5rem}
+    dl.meta{grid-template-columns:5.2rem 1fr}
+  }
+  @media print{
+    @page{margin:12mm}
+    body{background:#fff} .sheet{max-width:none;border:none}
+    .school,header{padding-left:0;padding-right:0} .inner{padding:0}
+    .controls{display:none} .mapwrap{border:1px solid #ccc}
+    h2{break-after:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="crimson-bar"></div>
+  <p class="school">Harvard Kennedy School</p>
+  <header>
+    <h1>PsychArmor: Stakeholder Network Map</h1>
+    <dl class="meta">
+      <dt>Course</dt><dd>MLD-371, AI and Civil Society, Fall 2026</dd>
+      <dt>Team</dt><dd>Kennedy Coders</dd>
+      <dt>Members</dt><dd>Philip Busick, Darion Akins, Oumar Diallo, Matt Wosje</dd>
+      <dt>Partner</dt><dd>PsychArmor Institute, Inc.</dd>
+      <dt>Status</dt><dd>Draft, 24 September 2026</dd>
+    </dl>
+  </header>
+
+  <div class="inner">
+
+    <h2>The map</h2>
+    <p>Every node and tie below is drawn from the background brief. Hover or tap any node to isolate its ties. Use the filters to drop a cluster out of view.</p>
+
+    <div class="controls" id="controls" role="group" aria-label="Filter clusters"></div>
+
+    <div class="mapwrap">
+      <svg id="map" viewBox="0 0 1700 1120" role="img"
+           aria-label="Network map of PsychArmor showing governance, staff, government, mission partners, paying clients, technology vendors, beneficiaries, and the Kennedy Coders project team.">
+        <g id="edges"></g>
+        <g id="nodes"></g>
+      </svg>
+    </div>
+
+    <div class="readout" id="readout" aria-live="polite">
+      <span class="who">Reading the map</span>
+      <span class="ties">PsychArmor sits at the center. Governance runs upward through the board and its Technology Committee. The external ecosystem runs outward: government and mission partners to the left, paying clients and technology vendors to the right, learners at the bottom. Our team enters at the top left.</span>
+    </div>
+
+    <div class="legend" id="legend"></div>
+
+    <h2>What the map shows</h2>
+    <ol class="findings">
+      <li><strong>One way in.</strong> Alison Wagner is our only tie into the organization. Every other connection we have runs through her introduction. If she disengages, the project loses its sponsor before intake is complete.</li>
+      <li><strong>A single decision gate for technology.</strong> The path runs board, then Technology Committee, then Etienne de Bruin. Atherall's question about supplying working power routes us through that gate rather than through staff. Winning de Bruin is the difference between a project that lands and one that runs parallel to the real effort.</li>
+      <li><strong>The board is the organization's reach.</strong> Steve Schwab leads the Elizabeth Dole Foundation and Terry Kraft leads the USS Midway Museum, both already tied to PsychArmor as partner or funder. Other directors sit inside RTX, BNY Mellon, Ascential, ClearForce, Enterhealth, and Frontwave. For an organization of roughly 16 staff, the board is a distribution and revenue channel, not just a governing body.</li>
+      <li><strong>Revenue concentrates on the right side.</strong> The Veteran Ready organizations and custom-learning clients account for 90.8 percent of FY2024 revenue. Philanthropic ties on the left carry the mission but no longer carry the budget.</li>
+      <li><strong>The technology cluster has no internal ties.</strong> Five systems each connect to PsychArmor and to nothing else. That empty space is the data-fragmentation problem stated visually: learner records, donor transactions, and marketing contacts never meet.</li>
+    </ol>
+
+    <div class="note">
+      <h2>Notes on evidence</h2>
+      <p>Dotted ties mark items that are inferred or proposed rather than confirmed. Thinkific and Engaging Networks are inferred from URL and page structure. The tie from our team to de Bruin is proposed, not agreed. The referral path through HillVets is drawn as an introduction only; the exact chain from HillVets to Alison Wagner should be confirmed at intake.</p>
+      <p>Sources are the same as the background brief: psycharmor.org, IRS Form 990 for EIN 46-5124059 via ProPublica, GuideStar, Charity Navigator, and correspondence with the PsychArmor team dated 22 September 2026.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var C = {
+    core:      {label:"PsychArmor",              color:"#A51C30"},
+    staff:     {label:"Leadership and staff",    color:"#8C8179"},
+    board:     {label:"Board and governance",    color:"#1E1E1E"},
+    gov:       {label:"Government",              color:"#46525A"},
+    mission:   {label:"Mission partners",        color:"#8996A0"},
+    revenue:   {label:"Paying clients and funders", color:"#B74959"},
+    tech:      {label:"Technology systems",      color:"#BAC5C6"},
+    learners:  {label:"Learners served",         color:"#C0606E"},
+    project:   {label:"Our team",                color:"#FFFFFF"}
+  };
+
+  // id, label, role, cluster, x, y, radius
+  var N = [
+    ["pa","PsychArmor","Carlsbad, CA. ~16 staff","core",850,570,26],
+
+    ["ceo","Tina Atherall","CEO. Our primary contact","staff",690,478,9],
+    ["cpio","Yamillet Rivas","Chief Product and Innovation Officer","staff",1010,478,9],
+    ["vpp","Jenna Pryor","VP of Partnerships","staff",1040,622,9],
+    ["team","Program staff","Production, marketing, support","staff",660,622,9],
+
+    ["bod","Board of Directors","12 members","board",850,398,16],
+    ["tc","Technology Committee","Where technology decisions route","board",850,268,14],
+    ["debruin","Etienne de Bruin","Committee co-chair. Functions as board CTO. 7CTOs","board",700,150,11],
+    ["tkraft","Terry Kraft","Committee co-chair. RADM (Ret.). USS Midway. HKS alumnus","board",1000,150,11],
+    ["wagner","Alison Wagner","Philanthropy Chair. RTX. Our entry point","board",540,105,10],
+    ["naylor","Kathy Naylor","Secretary","board",410,205,8],
+    ["thomson","Lissa Thomson","Board Chair. Lockton (ret.)","board",315,325,8],
+    ["murphy","Shaun Murphy","Vice Chair. CDR, USN (Ret.)","board",258,455,8],
+    ["birnie","Bill Birnie","Treasurer. SgtMaj, USMC (Ret.). Frontwave","board",245,585,8],
+    ["hudson","Mike Hudson","ClearForce","board",1160,105,8],
+    ["schwab","Steve Schwab","Chair Emeritus. CEO, Elizabeth Dole Foundation","board",1290,205,8],
+    ["detamble","Melissa DeTamble","Ascential Technologies","board",1385,325,8],
+    ["bull","Adrienne Bull","BNY Mellon","board",1442,455,8],
+    ["latif","Umar Latif","Enterhealth","board",1455,585,8],
+
+    ["va","Veterans Affairs","Co-created VA S.A.V.E.","gov",520,762,11],
+    ["samhsa","SAMHSA","Governor's Challenge","gov",398,690,10],
+    ["gcteams","Governor's Challenge teams","1,500 learner seats per state team","gov",330,832,10],
+
+    ["edf","Elizabeth Dole Foundation","Caregiver programs","mission",600,900,10],
+    ["wwp","Wounded Warrior Project","15 courses powered by PsychArmor","mission",742,952,10],
+    ["bwf","Bob Woodruff Foundation","Got Your 6 network","mission",470,962,9],
+    ["mazon","MAZON","End Veteran Hunger","mission",330,962,9],
+    ["carms","Combined Arms","End Veteran Hunger","mission",205,880,9],
+    ["midway","USS Midway Foundation","Grant funder","mission",612,1032,9],
+    ["hillvets","HillVets","Introduction path","mission",230,730,9],
+
+    ["vro","Veteran Ready organizations","~200 organizations. Per-seat fees","revenue",1150,880,12],
+    ["clients","Custom-learning clients","Amazon, Cigna, Google, Microsoft, United Way, Summit","revenue",1330,880,12],
+    ["comcast","Comcast","Digital skills for low-income veterans","revenue",1150,1010,9],
+    ["humana","Humana","Grant, September 2023","revenue",1330,990,9],
+
+    ["hubspot","HubSpot","Website, marketing, contacts. Confirmed","tech",1230,640,9],
+    ["ga","Google Analytics","Confirmed","tech",1390,590,9],
+    ["livechat","LiveChat","Human-staffed, not a bot. Confirmed","tech",1420,690,9],
+    ["thinkific","Thinkific","Learning platform. Inferred","tech",1180,745,9],
+    ["engnet","Engaging Networks","Donations. Inferred","tech",1330,760,9],
+
+    ["ind","Individual learners","3M+ course completions","learners",900,1000,12],
+    ["care","Caregivers and families","85,000+ learners","learners",1046,952,11],
+
+    ["kc","Kennedy Coders","HKS MLD-371 project team","project",120,175,13]
+  ];
+
+  // source, target, type
+  var E = [
+    ["pa","bod","gov1"],["bod","tc","gov1"],["tc","debruin","gov1"],["tc","tkraft","gov1"],
+    ["bod","wagner","gov1"],["bod","naylor","gov1"],["bod","thomson","gov1"],["bod","murphy","gov1"],
+    ["bod","birnie","gov1"],["bod","hudson","gov1"],["bod","schwab","gov1"],["bod","detamble","gov1"],
+    ["bod","bull","gov1"],["bod","latif","gov1"],
+
+    ["pa","ceo","internal"],["pa","cpio","internal"],["pa","vpp","internal"],["pa","team","internal"],
+    ["debruin","team","proposed"],
+
+    ["pa","va","program"],["pa","samhsa","program"],
+    ["va","gcteams","program"],["samhsa","gcteams","program"],
+    ["pa","wwp","program"],["pa","edf","program"],["pa","comcast","program"],
+    ["pa","mazon","program"],["pa","carms","program"],["pa","bwf","program"],
+    ["edf","comcast","program"],
+
+    ["pa","ind","service"],["pa","care","service"],
+
+    ["vro","pa","money"],["clients","pa","money"],["humana","pa","money"],["midway","pa","money"],
+
+    ["pa","hubspot","system"],["pa","ga","system"],["pa","livechat","system"],
+    ["pa","thinkific","inferred"],["pa","engnet","inferred"],
+
+    ["schwab","edf","affil"],["tkraft","midway","affil"],["hillvets","pa","affil"],
+
+    ["hillvets","kc","proposed"],["wagner","kc","proposed"],
+    ["kc","ceo","proposed"],["kc","debruin","proposed"]
+  ];
+
+  var ET = {
+    gov1:     {stroke:"#8C8179", w:1.3, dash:""},
+    internal: {stroke:"#1E1E1E", w:1.3, dash:""},
+    program:  {stroke:"#1E1E1E", w:1.1, dash:""},
+    service:  {stroke:"#C0606E", w:1.6, dash:""},
+    money:    {stroke:"#A51C30", w:2.4, dash:""},
+    system:   {stroke:"#8996A0", w:1.2, dash:""},
+    inferred: {stroke:"#8996A0", w:1.2, dash:"1 4"},
+    affil:    {stroke:"#8996A0", w:1.2, dash:"5 4"},
+    proposed: {stroke:"#A51C30", w:1.4, dash:"2 4"}
+  };
+
+  var byId = {}, nodes = [], SVGNS = "http://www.w3.org/2000/svg";
+  N.forEach(function(r){
+    var n = {id:r[0], label:r[1], role:r[2], cluster:r[3], x:r[4], y:r[5], r:r[6], deg:0};
+    byId[n.id] = n; nodes.push(n);
+  });
+  E.forEach(function(e){
+    if(byId[e[0]]) byId[e[0]].deg++;
+    if(byId[e[1]]) byId[e[1]].deg++;
+  });
+
+  var edgesG = document.getElementById("edges"),
+      nodesG = document.getElementById("nodes");
+
+  function el(tag, attrs){
+    var e = document.createElementNS(SVGNS, tag);
+    for(var k in attrs){ e.setAttribute(k, attrs[k]); }
+    return e;
+  }
+
+  // Edges
+  var edgeEls = [];
+  E.forEach(function(e){
+    var a = byId[e[0]], b = byId[e[1]], t = ET[e[2]];
+    if(!a || !b) return;
+    var line = el("line", {
+      x1:a.x, y1:a.y, x2:b.x, y2:b.y,
+      stroke:t.stroke, "stroke-width":t.w, "stroke-linecap":"round",
+      "stroke-dasharray":t.dash, opacity:0.55, "class":"edge"
+    });
+    line.__a = a.id; line.__b = b.id;
+    line.__clusters = [a.cluster, b.cluster];
+    edgesG.appendChild(line);
+    edgeEls.push(line);
+  });
+
+  // Nodes
+  var nodeEls = [];
+  nodes.forEach(function(n){
+    var g = el("g", {"class":"node", tabindex:"0", role:"button",
+      "aria-label": n.label + ". " + n.role});
+    var fill = C[n.cluster].color;
+    var stroke = (n.cluster === "project" || n.cluster === "tech") ? "#A51C30" : "#FFFFFF";
+    if(n.cluster === "tech") stroke = "#8C8179";
+
+    var ring = el("circle", {cx:n.x, cy:n.y, r:n.r, fill:fill,
+      stroke:stroke, "stroke-width": n.cluster==="project" ? 2.5 : 1.5, "class":"ring"});
+    if(n.cluster === "project") ring.setAttribute("stroke-dasharray","4 3");
+    g.appendChild(ring);
+
+    // Label
+    var anchor, lx, ly, dy1;
+    if(n.id === "pa"){ anchor="middle"; lx=n.x; ly=n.y + n.r + 18; }
+    else if(n.x < 790){ anchor="end"; lx = n.x - n.r - 7; ly = n.y - 2; }
+    else if(n.x > 910){ anchor="start"; lx = n.x + n.r + 7; ly = n.y - 2; }
+    else if(n.y < 570){ anchor="middle"; lx = n.x; ly = n.y - n.r - 16; }
+    else { anchor="middle"; lx = n.x; ly = n.y + n.r + 15; }
+
+    var t = el("text", {x:lx, y:ly, "text-anchor":anchor,
+      "class":"label" + (n.id==="pa" ? " core-label" : "")});
+    var t1 = el("tspan", {x:lx, "class":"nm"}); t1.textContent = n.label;
+    var t2 = el("tspan", {x:lx, dy:"13", "class":"rl"}); t2.textContent = n.role;
+    t.appendChild(t1); t.appendChild(t2);
+    g.appendChild(t);
+
+    var hit = el("circle", {cx:n.x, cy:n.y, r:Math.max(n.r + 9, 15),
+      fill:"transparent", "class":"node-hit"});
+    g.appendChild(hit);
+
+    g.__id = n.id; g.__cluster = n.cluster;
+    nodesG.appendChild(g);
+    nodeEls.push(g);
+
+    g.addEventListener("mouseenter", function(){ focusNode(n.id); });
+    g.addEventListener("mouseleave", clearFocus);
+    g.addEventListener("focus", function(){ focusNode(n.id); });
+    g.addEventListener("blur", clearFocus);
+    g.addEventListener("click", function(){ focusNode(n.id); });
+  });
+
+  // Focus behaviour
+  var readout = document.getElementById("readout");
+  var defaultReadout = readout.innerHTML;
+
+  function focusNode(id){
+    var keep = {}; keep[id] = true;
+    var ties = [];
+    edgeEls.forEach(function(l){
+      if(l.__a === id || l.__b === id){
+        keep[l.__a] = true; keep[l.__b] = true;
+        l.classList.remove("dim");
+        var other = byId[l.__a === id ? l.__b : l.__a];
+        if(other) ties.push(other.label);
+      } else {
+        l.classList.add("dim");
+      }
+    });
+    nodeEls.forEach(function(g){
+      if(keep[g.__id]) g.classList.remove("dim"); else g.classList.add("dim");
+    });
+    var n = byId[id];
+    readout.innerHTML = '<span class="who">' + esc(n.label) + '</span>' +
+      '<span class="ties">' + esc(n.role) + '. ' +
+      (ties.length ? 'Ties: ' + esc(ties.join(", ")) + '.' : 'No ties drawn.') +
+      '</span>';
+  }
+
+  function clearFocus(){
+    edgeEls.forEach(function(l){ l.classList.remove("dim"); });
+    nodeEls.forEach(function(g){ g.classList.remove("dim"); });
+    readout.innerHTML = defaultReadout;
+  }
+
+  function esc(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];
+    });
+  }
+
+  // Cluster filters
+  var controls = document.getElementById("controls"), off = {};
+  Object.keys(C).forEach(function(k){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.setAttribute("aria-pressed","true");
+    var d = document.createElement("span");
+    d.className = "dot"; d.style.background = C[k].color;
+    if(k === "project" || k === "tech") d.style.boxShadow = "inset 0 0 0 1.5px #8C8179";
+    b.appendChild(d);
+    b.appendChild(document.createTextNode(C[k].label));
+    b.addEventListener("click", function(){
+      off[k] = !off[k];
+      b.setAttribute("aria-pressed", off[k] ? "false" : "true");
+      applyFilter();
+    });
+    controls.appendChild(b);
+  });
+
+  function applyFilter(){
+    nodeEls.forEach(function(g){
+      g.classList.toggle("hidden", !!off[g.__cluster]);
+    });
+    edgeEls.forEach(function(l){
+      var hide = l.__clusters.some(function(c){ return off[c]; });
+      l.classList.toggle("hidden", hide);
+    });
+  }
+
+  // Legend
+  var legendRows = [
+    ["#A51C30", 2.4, "", "Money in: fees and grants"],
+    ["#1E1E1E", 1.2, "", "Formal program or contract"],
+    ["#8C8179", 1.3, "", "Governance"],
+    ["#C0606E", 1.6, "", "Service delivered to learners"],
+    ["#8996A0", 1.2, "5 4", "Personal or dual affiliation"],
+    ["#8996A0", 1.2, "1 4", "Inferred, not confirmed"],
+    ["#A51C30", 1.4, "2 4", "Proposed by our team"]
+  ];
+  var legend = document.getElementById("legend");
+  legendRows.forEach(function(r){
+    var row = document.createElement("div"); row.className = "row";
+    var s = document.createElementNS(SVGNS,"svg");
+    s.setAttribute("viewBox","0 0 34 10"); s.setAttribute("aria-hidden","true");
+    var ln = el("line",{x1:1,y1:5,x2:33,y2:5,stroke:r[0],"stroke-width":r[1],
+      "stroke-dasharray":r[2],"stroke-linecap":"round"});
+    s.appendChild(ln); row.appendChild(s);
+    row.appendChild(document.createTextNode(r[3]));
+    legend.appendChild(row);
+  });
+
+  // Clicking empty canvas clears focus
+  document.getElementById("map").addEventListener("click", function(ev){
+    if(ev.target.tagName === "svg") clearFocus();
+  });
+})();
+</script>
+</body>
+</html>
