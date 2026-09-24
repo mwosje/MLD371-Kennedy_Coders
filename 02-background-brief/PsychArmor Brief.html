@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PsychArmor: Background Brief — Kennedy Coders, MLD-371</title>
+<style>
+  /* Harvard palette
+     Crimson  #A51C30   Black/Ink #1E1E1E   Mortar #8C8179
+     Parchment #F3F3F1  Slate     #8996A0   Shade  #BAC5C6
+     Per Harvard identity guidance, crimson is used for rules and fields,
+     never as a text color. */
+
+  :root {
+    --crimson: #A51C30;
+    --ink: #1E1E1E;
+    --mortar: #8C8179;
+    --parchment: #F3F3F1;
+    --slate: #8996A0;
+    --shade: #BAC5C6;
+    --paper: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: Georgia, "Adobe Garamond Pro", Garamond, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.62;
+    text-rendering: optimizeLegibility;
+  }
+
+  .sheet {
+    max-width: 44em;
+    margin: 0 auto;
+    background: var(--paper);
+    border-left: 1px solid var(--shade);
+    border-right: 1px solid var(--shade);
+    min-height: 100vh;
+  }
+
+  .inner { padding: 0 3.25rem 5rem; }
+
+  /* Masthead */
+
+  .crimson-bar {
+    background: var(--crimson);
+    height: 0.6rem;
+  }
+
+  .school {
+    font-family: "Franklin Gothic Book", "Franklin Gothic", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--mortar);
+    padding: 1.4rem 3.25rem 0;
+  }
+
+  header {
+    padding: 0.9rem 3.25rem 1.8rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  h1 {
+    font-size: 2.05rem;
+    line-height: 1.18;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.1rem;
+  }
+
+  dl.meta {
+    font-family: "Franklin Gothic Book", "Franklin Gothic", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.83rem;
+    line-height: 1.5;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 0.28rem 1rem;
+  }
+
+  dl.meta dt {
+    color: var(--mortar);
+  }
+
+  dl.meta dd {
+    margin: 0;
+    color: var(--ink);
+  }
+
+  /* Body */
+
+  h2 {
+    font-family: "Franklin Gothic Book", "Franklin Gothic", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin: 2.6rem 0 0.9rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--shade);
+  }
+
+  p { margin: 0 0 1.05rem; }
+
+  .run-in strong { font-weight: 700; }
+
+  /* Reference marks: ink, not crimson, per identity guidance */
+
+  a.ref {
+    font-family: "Franklin Gothic Book", "Franklin Gothic", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.68em;
+    vertical-align: 0.45em;
+    line-height: 0;
+    padding: 0 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--shade);
+  }
+
+  a.ref:hover, a.ref:focus { border-bottom-color: var(--crimson); }
+
+  ol.questions {
+    margin: 0 0 1rem;
+    padding-left: 1.45rem;
+  }
+
+  ol.questions li { margin-bottom: 0.45rem; }
+
+  /* Sources */
+
+  .sources {
+    margin-top: 3.2rem;
+    padding: 1.7rem 1.9rem 1.5rem;
+    background: var(--parchment);
+    border-top: 3px solid var(--crimson);
+    font-family: "Franklin Gothic Book", "Franklin Gothic", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: #45433f;
+  }
+
+  .sources h2 {
+    font-size: 0.9rem;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin: 0 0 0.85rem;
+    color: var(--ink);
+  }
+
+  .sources ol {
+    padding-left: 1.7rem;
+    margin: 0.9rem 0;
+  }
+
+  .sources li { margin-bottom: 0.32rem; }
+
+  .sources a {
+    color: #45433f;
+    text-decoration: none;
+    border-bottom: 1px solid var(--shade);
+    word-break: break-word;
+  }
+
+  .sources a:hover, .sources a:focus {
+    color: var(--ink);
+    border-bottom-color: var(--crimson);
+  }
+
+  .note { font-style: italic; margin: 1.1rem 0 0; }
+
+  :target { background: #ece2e4; }
+
+  a:focus-visible {
+    outline: 2px solid var(--crimson);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .school, header { padding-left: 1.4rem; padding-right: 1.4rem; }
+    .inner { padding: 0 1.4rem 3.5rem; }
+    h1 { font-size: 1.6rem; }
+    dl.meta { grid-template-columns: 5.5rem 1fr; }
+    .sources { padding: 1.4rem 1.2rem; }
+  }
+
+  @media print {
+    @page { margin: 16mm 18mm; }
+    body { background: #fff; font-size: 10.5pt; line-height: 1.42; }
+    .sheet { max-width: none; border: none; min-height: 0; }
+    .school, header { padding-left: 0; padding-right: 0; }
+    .inner { padding: 0; }
+    h1 { font-size: 20pt; }
+    h2 { page-break-after: avoid; break-after: avoid; margin-top: 1.5rem; }
+    p, li { orphans: 3; widows: 3; }
+    .sources { background: #fff; padding: 1rem 0 0; }
+    .sources a, a.ref { border-bottom: none; }
+    :target { background: none; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<div class="crimson-bar"></div>
+<p class="school">Harvard Kennedy School</p>
+
+<header>
+  <h1>PsychArmor: Background Brief</h1>
+  <dl class="meta">
+    <dt>Course</dt><dd>MLD-371, AI and Civil Society, Fall 2026</dd>
+    <dt>Team</dt><dd>Kennedy Coders</dd>
+    <dt>Members</dt><dd>Philip Busick, Darion Akins, Oumar Diallo, Matt Wosje</dd>
+    <dt>Partner</dt><dd>PsychArmor Institute, Inc.</dd>
+    <dt>Status</dt><dd>Draft, 24 September 2026</dd>
+  </dl>
+</header>
+
+<div class="inner">
+
+<h2>What the organization does</h2>
+
+<p>PsychArmor is a national nonprofit headquartered in Carlsbad, California, founded in 2013. Its mission is to transform the way the nation engages with the military and veteran community through education and training<a class="ref" href="#s1">1</a>. Its core offering is a free library of more than 250 self-paced online courses covering military culture, suicide prevention, caregiving, workforce development, and health equity, built with subject-matter experts and clinicians<a class="ref" href="#s2">2</a>. Its best-known course, &ldquo;15 Things Veterans Want You to Know,&rdquo; has over 250,000 views<a class="ref" href="#s1">1</a>.</p>
+
+<p>It serves two audiences. Individual learners, meaning veterans, service members, caregivers, and military families, take courses at no cost. Organizations pay for customized training, Veteran Ready certification, and consulting; nearly 200 organizations nationwide use the platform<a class="ref" href="#s3">3</a>. Additional programs include the School for Military Veteran Caregivers and Families, with 45 courses and more than 85,000 learners completing over 231,000 courses<a class="ref" href="#s4">4</a>; a Governor&rsquo;s Challenge suicide-prevention portal built with the VA and SAMHSA<a class="ref" href="#s5">5</a>; and the weekly Behind the Mission podcast. Over 3 million course completions have been recorded to date<a class="ref" href="#s6">6</a>. Reach is national and virtual rather than site-based.</p>
+
+<h2>Who runs it</h2>
+
+<p>CEO Dr. Tina Atherall, DSW, LMSW, is our primary contact. Senior staff include a Chief Product and Innovation Officer and a VP of Partnerships<a class="ref" href="#s7">7</a>. Staff size is approximately 16<a class="ref" href="#s8">8</a>; data brokers list higher figures that likely include contractors and subject-matter experts.</p>
+
+<p>In FY2024 the organization reported $2.48 million in revenue against $2.89 million in expenses, a deficit of roughly $409,000, leaving net assets at $407,000<a class="ref" href="#s9">9</a>. Revenue is now 90.8 percent earned through program services and 9.2 percent contributions; donations fell from $963,000 in FY2023 to $227,000 in FY2024. Charity Navigator rates the organization 4 of 4 stars<a class="ref" href="#s10">10</a>.</p>
+
+<p>Technology decisions route through a board Technology Committee co-chaired by Etienne de Bruin, who functions as board CTO, and RADM (Ret.) Terry Kraft, an HKS alumnus. Lissa Thomson chairs the board. Board member Alison Wagner, our entry point, reported that the 22 September board meeting discussed this project against existing AI goals.</p>
+
+<h2>What the work looks like day to day</h2>
+
+<p>Three recurring workstreams dominate, based on the staff roster and published materials<a class="ref" href="#s7">7</a>.</p>
+
+<p class="run-in"><strong>Course production.</strong> The team includes a post-production lead, two motion graphics artists, a learning experience designer, and a project manager. Courses are scripted with subject-matter experts, filmed, animated, edited, and published to the learning platform. This is an in-house video operation, unusual at this headcount.</p>
+
+<p class="run-in"><strong>Partner onboarding and reporting.</strong> Partnership, business development, and operations staff sell and service the certification and custom-training contracts that now generate most revenue. The work includes per-seat pricing, custom portal setup, and course-completion reporting back to client organizations<a class="ref" href="#s3">3</a>.</p>
+
+<p class="run-in"><strong>Marketing and donor communications.</strong> A single marketing manager runs the blog, email campaigns, and sponsorship solicitation. The podcast publishes weekly.</p>
+
+<h2>Where AI already shows up</h2>
+
+<p>PsychArmor is already in motion on AI. In emails to the PsychArmor team on 22 September 2026, CEO Tina Atherall stated that the organization is already implementing several AI tools, which she did not name, and is mid-way through an &ldquo;AI Sprint fellowship&rdquo; to build AI education across staff. Board member Etienne de Bruin was preparing to launch an internal technology audit with the staff team as the first step toward an overall technology strategy, and identified automating workflows and process mapping as the activities most valuable to that audit. Atherall asked whether our team could supply working power alongside de Bruin rather than run a separate effort.</p>
+
+<p>Public signals now read as early indicators of that program. De Bruin&rsquo;s 2025 board appointment was framed around leveraging technology to expand access<a class="ref" href="#s11">11</a>, and Wagner spoke publicly in January 2026 about adapting the platform with generative AI<a class="ref" href="#s12">12</a>.</p>
+
+<p>Confirmed platforms are HubSpot for the website and marketing, LiveChat for customer support, which is human-staffed rather than a bot, and Google Analytics. The learning platform appears to be Thinkific and the donation platform Engaging Networks, both inferred from URL structure rather than confirmed by the organization. Nothing public or in correspondence indicates a tool PsychArmor has refused to use.</p>
+
+<h2>Frictions worth a closer look</h2>
+
+<p class="run-in"><strong>A large library and a small team.</strong> More than 250 courses, many carrying continuing-education credit and referencing evolving clinical guidance and VA policy, are maintained by roughly 16 staff. The work of keeping video modules current, accurate, and re-accredited concentrates in a handful of production roles.</p>
+
+<p class="run-in"><strong>Two parallel diagnostics.</strong> De Bruin&rsquo;s internal technology audit and our needs assessment cover overlapping ground. Without deliberate coordination, staff get interviewed twice about the same workflows and the two efforts produce competing recommendations. This is the most immediate risk to the project&rsquo;s usefulness.</p>
+
+<h2>Open questions for intake</h2>
+
+<ol class="questions">
+  <li>Scope and timeline of the internal technology audit, and where our team plugs in.</li>
+  <li>Which AI tools are already in use, by whom, and for what.</li>
+  <li>What the AI Sprint fellowship covers and which staff are participating.</li>
+  <li>Whether any written AI policy exists, given suicide-prevention content and continuing-education accreditation obligations.</li>
+  <li>Confirmation of the learning platform, the donation platform, and whether HubSpot functions as the CRM.</li>
+</ol>
+
+<section class="sources">
+  <h2>Sources</h2>
+
+  <p>Correspondence: emails between the project team and the PsychArmor team, 22 September 2026, including Dr. Tina Atherall (CEO), Etienne de Bruin (Board, Technology Committee Co-Chair), and Alison Wagner (Board, Philanthropy Chair). This thread also serves as the Milestone 1 partner confirmation.</p>
+
+  <p>All web sources accessed 24 September 2026.</p>
+
+  <ol>
+    <li id="s1"><a href="https://psycharmor.org/who-we-are">psycharmor.org/who-we-are</a></li>
+    <li id="s2"><a href="https://learn.psycharmor.org/collections">learn.psycharmor.org/collections</a></li>
+    <li id="s3"><a href="https://psycharmor.org/services">psycharmor.org/services</a> and <a href="https://psycharmor.org/frequently-asked-questions">psycharmor.org/frequently-asked-questions</a></li>
+    <li id="s4"><a href="https://psycharmor.org/news/news/psycharmor-va-save">psycharmor.org/news/news/psycharmor-va-save</a></li>
+    <li id="s5"><a href="https://psycharmor.org/frequently-asked-questions">psycharmor.org/frequently-asked-questions</a></li>
+    <li id="s6"><a href="https://www.guidestar.org/profile/46-5124059">guidestar.org/profile/46-5124059</a></li>
+    <li id="s7"><a href="https://psycharmor.org/team">psycharmor.org/team</a></li>
+    <li id="s8"><a href="https://www.zoominfo.com/c/psycharmor/357630838">zoominfo.com/c/psycharmor/357630838</a></li>
+    <li id="s9"><a href="https://projects.propublica.org/nonprofits/organizations/465124059">projects.propublica.org/nonprofits/organizations/465124059</a> (IRS Form 990, EIN 46-5124059)</li>
+    <li id="s10"><a href="https://www.charitynavigator.org/ein/465124059">charitynavigator.org/ein/465124059</a></li>
+    <li id="s11"><a href="https://psycharmor.org/news/psycharmor-welcomes-technology-visionary-etienne-de-bruin-to-board-of-directors">psycharmor.org/news/psycharmor-welcomes-technology-visionary-etienne-de-bruin-to-board-of-directors</a></li>
+    <li id="s12"><a href="https://psycharmor.org/blog">psycharmor.org/blog</a> (15 for 15 Spotlight, Alison Wagner, 22 January 2026)</li>
+  </ol>
+
+  <p class="note">Note: Thinkific and Engaging Networks are inferred from URL and page-structure signatures, not confirmed by the organization. HubSpot, LiveChat, and Google Analytics are confirmed from page source.</p>
+</section>
+
+</div>
+</div>
+</body>
+</html>
